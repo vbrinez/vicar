@@ -1,0 +1,38 @@
+{% extends "./baseblog.html" %}
+
+{% block title %}
+    Blog | Ver Todos los Usuarios
+{% endblock %}
+
+{% block body %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> Nombre </th>
+                    <th> Correo </th>
+                    <th> Telefono </th>
+                    <th> Tipo </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for n in usuarios %}
+                    <tr>
+                        <td> {{forloop.counter}} </td>
+                        <td> {{n.nombre}} {{n.apellido}} </td>
+                        <td> {{n.correo}} </td>
+                        <td> {{n.telefono}} </td>
+                        <td> {{n.tipo}} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"><a href="/blog/add" class="btn btn-success">+ Agregar Usuario</a></td>
+                    <td></td>
+                    <td colspan="2"><a href="/blog/mod" class="btn btn-warning"> Editar Usuarios</a></td>
+                </tr>
+            </tfoot>
+        </table>
+{% endblock %}
+   

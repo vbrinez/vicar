@@ -1,0 +1,44 @@
+{% extends "./base.html" %}
+{% block title %}
+    Blog | Editar ({{usuario.id}})
+{% endblock %}
+
+{% block body %}
+    <h1>Editando a {{usuario.nombre}} {{usuario.apellido}}</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="/modificarUsuario/" method="POST"> {% csrf_token %}
+                <div class="mb-3">
+                    <input type="text" id="id" value="{{usuario.id_usuario}}" name="id" hidden>
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{usuario.nombre}}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido" value="{{usuario.apellido}}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="correo" name="correo" value="{{usuario.correo}}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{usuario.telefono}}" required>
+                </div>
+                <div class="mb-3"></div>
+                <label for="tipo_usuario" class="form-label">Tipo de Usuario</label>
+                    <select name="tipo_usuario" id="tipo_usuario" required>
+                        <option value="">Selecciona tipo de usuario</option>
+                        <option value="U">Usuarios</option>
+                        <option value="B">Blogger</option>
+                        <option value="A">Administrador</option>
+                    </select>
+                </div>
+                <div class="form-gruop">
+                    <button type="submit" class="btn btn-warning btn-block">Modificar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

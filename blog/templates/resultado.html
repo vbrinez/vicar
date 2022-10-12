@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Blog | Publicaciones
+{% endblock %}
+
+{% block body %}
+
+
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <!-- Post preview-->
+                {% for n in publicaciones %}
+                <div class="post-preview">
+                    <a href="/articulo/{{n.id_publicaciones}}">
+                        <h2 class="post-title">{{n.titulo}}</h2>
+                        <h3 class="post-subtitle">{{n.resumen}}</h3>
+                    </a>
+                    <p class="post-meta">
+                        Posteado por
+                        {% for m in usuarios %}
+                            {% if m.id_usuario == n.id_usuario %}
+                                <a href="/perfil/{{n.id_usuario}}"> {{m.nombre}} {{m.apellido}} </a>
+                            {% endif %}
+                        {% endfor %}
+                        {{n.fecha}}
+                    </p>
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />
+                {% endfor %}
+                <!-- Post preview-->
+            </div>
+        </div>
+    </div>
+{% endblock %}

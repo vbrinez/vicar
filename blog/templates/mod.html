@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+{% block title %}
+    Blog | Modificar Usuarios
+{% endblock %}
+
+{% block body %}
+    <h1>Modificar datos de Usuarios</h1>
+    <div class="row">
+        <div class="table-responsive"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th> Nombre </th>
+                    <th> Correo </th>
+                    <th> Telefono </th>
+                    <th> Tipo </th>
+                    <th> Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for n in usuarios %}
+                <tr>
+                    <td> {{n.nombre}} {{n.apellido}} </td>
+                    <td> {{n.correo}} </td>
+                    <td> {{n.telefono}} </td>
+                    <td> {{n.tipo}} </td>
+                    <td> 
+                        <a href="editarUsuario/{{n.id_usuario}}" class="btn btn-warning">Editar</a>
+                        <a href="eliminarUsuario/{{n.id_usuario}}" class="btn btn-danger">ELiminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

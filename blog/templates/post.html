@@ -1,0 +1,48 @@
+{% extends "baseblog.html" %}
+
+{% load static %}
+
+{% block title %}
+    Blog | Publicaciones
+{% endblock %}
+
+{% block body %}
+
+<br>
+<br>
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <!-- Post preview-->
+                <div class="post-preview">
+                    <h1 class="post-title">{{publicaciones.titulo}}</h2>
+                    <br>
+                    <br>
+                    <h3 class="post-subtitle">{{publicaciones.resumen}}</h3>
+                    <br>
+                    <p>{{publicaciones.contenido}}</p>
+                    <br>
+                    <br>
+                    {% for h in categorias %}
+                        {% if h.id_categoria == publicaciones.id_categoria %}
+                            <p>Catergoria: {{h.nombre}}</p>
+                        {% endif %}
+                    {% endfor %}
+                    <p class="post-meta">
+                        Posteado por
+                        {% for m in usuarios %}
+                            {% if m.id_usuario == publicaciones.id_usuario %}
+                                <a href="/blog/perfil/{{publicaciones.id_usuario}}"> {{m.nombre}} {{m.apellido}} </a>
+                            {% endif %}
+                        {% endfor %}
+                        {{publicaciones.fecha}}
+                    </p>
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />
+                <!-- Post preview-->
+            </div>
+        </div>
+    </div>
+{% endblock %}

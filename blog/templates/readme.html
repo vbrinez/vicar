@@ -1,0 +1,60 @@
+{% extends "base2.html" %}
+
+{% load static %}
+
+{% block contenido %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('static/assets/img/post-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Readme.md</h1>
+                            <h2 class="subheading">Entrega Intermedia</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">Carlo Gonzalez & Victor Briñez</a>
+                                on Septiembre 22, 2022
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>Este repositorio contiene la entrega intermedia del proyecto final del Curso de Python en CODERHOUSE.</p>
+                        
+                        <h2 class="section-heading">Autores</h2>
+                        <p>Fue desarrollado por Victor Briñez y Carlo Gonzalez, participantes de la cursada 34620</p>
+                        
+                        <h2 class="section-heading">Funcionalidad</h2>
+                        <p>se puede clonar el repositorio con:</p>
+
+                        <p> git clone (url)</p>
+                        
+                        <p> y posteriormente ejecutar el siguiente comando en la terminal del VSC:</p>
+                        
+                        <p>   python manage.py runserver</p>
+                        
+                        <p>para luego dirigirse desde el navegador web a la direccion 127.0.0.1/blog para observar el home de la web, donde se podra observar el despliegue de las publicaciones del blog.</p>
+                        <p>En la esquina superior izquierda clikeando sobre las letras de la frase "Así funciona" se desplegará una version de este documento. </p>
+                        <p>En el extremo superior derecho en la barra de navegacion sobre la palabra "Usuarios" muestra la lista de usuarios con las opciones de agregar nuevo y editar usuarios. Ambos botones son funcionales, en el caso de edirar usuarios, despliega una nueva vista donde se pueden editar los usuarios existentes y permite eliminar los usuarios activos. </p>
+                        <p>Luego en el nav continua el boton "Publicaciones" el cual desplegará una vista que permitirá crear publicaciones nuevas y agregar categorias para la clasificacion de las publicaciones</p>
+                        
+                            
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
+{% endblock %}
+

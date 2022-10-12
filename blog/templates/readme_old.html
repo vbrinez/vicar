@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Blog | README {% endblock %}
+
+{% block body%}
+<h1>Entrega_intermedia  README.MD CJ&amp;VB</h1>
+<br>
+
+<h3><p>Este repositorio contiene la entrega intermedia del proyecto final del Curso de Python en CODERHOUSE.</p></h3>
+<br>
+
+<h3>
+Autores: <br>
+Fue desarrollado por Victor Briñez y Carlo Gonzalez, participantes de la cursada 34620
+</h3>
+<br>
+
+<h5>
+Funcionalidad
+
+<p>Se puede clonar el repositorio con: git clone (https://github.com/Carl0jgr/entrega_intermedia.git)</p>
+
+<p>Posteriormente ejecutar el siguiente comando en la terminal del VSC: python manage.py runserver</p>
+
+<p>Para luego dirigirse desde el navegador web a la direccion 127.0.0.1/blog para observar el home de la web, donde se podra observar el despliegue
+    de las publicaciones del blog.</p>	
+
+<p>En la esquina superior izquierda clikeando sobre las letras de la frase "Así funciona" se desplegará una version de este documento.</p>
+
+<p>En el extremo superior derecho en la barra de navegacion sobre la palabra "Usuarios" muestra la lista de usuarios con las opciones de agregar nuevo
+    y editar usuarios. Ambos botones son funcionales, en el caso de edirar usuarios, despliega una nueva vista donde se pueden editar los usuarios existentes
+    y permite eliminar los usuarios activos. </p>
+
+<p>Luego en el nav continua el boton "Publicaciones" el cual desplegará una vista que permitirá crear publicaciones nuevas y agregar categorias 
+    para la clasificacion de las publicaciones</p>
+
+</h5>
+
+{% endblock %}

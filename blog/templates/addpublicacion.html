@@ -1,0 +1,48 @@
+{% extends "./baseblog.html" %}
+{% block title %}
+    Blog | Publicacion
+{% endblock %}
+
+{% block body %}
+    <h1>Agregar Publicacion</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="/blog/registrarPublicacion/" method="POST"> {% csrf_token %}
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Titulo</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="resumen" class="form-label">Resumen</label>
+                    <input type="text" class="form-control" id="resumen" name="resumen" placeholder=" El resumen" required>
+                </div>
+                <div class="mb-3">
+                    <label for="articulo" class="form-label">Articulo</label>
+                    <textarea rows="4" cols="50" type="text" class="form-control" id="articulo" name="articulo" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <select name="id_categoria" id="id_categoria" required>
+                        <option value="">Seleccione Una Categoria</option>
+                        {% for n in categorias %}
+                            <option value={{n.id_categoria}}>{{n.nombre}}</option>
+                        {% endfor %}
+                    </select>
+                    <a href="/blog/addcategoria" class="btn btn-success">+ Agregar Categoria</a>
+                </div>
+                <div class="mb-3">
+                    <select name="id_usuario" id="id_usuario" required>
+                        <option value="">Seleccione Usuario</option>
+                        {% for n in usuarios %}
+                            <option value={{n.id_usuario}}>{{n.nombre}} {{n.apellido}}</option>
+                        {% endfor %}
+                    </select>
+                    <a href="/blog/add" class="btn btn-success">+ Agregar Usuario</a>
+                </div>
+                <div class="form-gruop">
+                    <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

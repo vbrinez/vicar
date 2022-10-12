@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+{% block title %}
+    Blog | Perfil ({{usuario.id}})
+{% endblock %}
+
+{% block body %}
+    <h1>Perfil de  {{usuario.nombre}} {{usuario.apellido}}</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="/modificarUsuario/" method="POST"> {% csrf_token %}
+                <div class="mb-3">
+                    <input type="text" id="id" value="{{usuario.id_usuario}}" name="id" hidden>
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{usuario.nombre}}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido" value="{{usuario.apellido}}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="correo" name="correo" value="{{usuario.correo}}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{usuario.telefono}}" readonly>
+                </div>
+                <div class="form-gruop">
+                    <a href="/" class="btn btn-success">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "./baseblog.html" %}
+{% block title %}
+    Blog | Agregar
+{% endblock %}
+
+{% block body %}
+    <h1>Agregar Usuarios</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="/blog/registrarUsuario/" method="POST"> {% csrf_token %}
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" required>
+                </div>
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="text" class="form-control" id="correo" name="correo" placeholder="Correo@algo.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tipo_usuario" class="form-label">Tipo de Usuario</label>
+                    <select name="tipo_usuario" id="tipo_usuario" required>
+                        <option value="">Selecciona tipo de usuario</option>
+                        <option value="U">Usuarios</option>
+                        <option value="B">Blogger</option>
+                        <option value="A">Administrador</option>
+                    </select>
+                </div>
+                <div class="form-gruop">
+                    <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
