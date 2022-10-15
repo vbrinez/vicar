@@ -16,7 +16,65 @@
     
         <link href="{% static 'css/animate.css' %}" rel="stylesheet">
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    
+        <link href="{% static 'css/plugins/dropzone/basic.css' %}" rel="stylesheet">
+        <link href="{% static 'css/plugins/dropzone/dropzone.css' %}" rel="stylesheet">
+        <script type="text/javascript">
+            var numero = 0; //Esta es una variable de control para mantener nombres
+                        //diferentes de cada campo creado dinamicamente.
+            evento = function (evt) { //esta funcion nos devuelve el tipo de evento disparado
+               return (!evt) ? event : evt;
+            }
+            
+            //Aqui se hace lamagia... jejeje, esta funcion crea dinamicamente los nuevos campos file
+            addCampo = function () { 
+            //Creamos un nuevo div para que contenga el nuevo campo
+               nDiv = document.createElement('div');
+            //con esto se establece la clase de la div
+               nDiv.className = 'archivo';
+            //este es el id de la div, aqui la utilidad de la variable numero
+            //nos permite darle un id unico
+               nDiv.id = 'file' + (++numero);
+            //creamos el input para el formulario:
+               nCampo = document.createElement('input');
+            //le damos un nombre, es importante que lo nombren como vector, pues todos los campos
+            //compartiran el nombre en un arreglo, asi es mas facil procesar posteriormente con php
+               nCampo.name = 'archivos[]';
+            //Establecemos el tipo de campo
+               nCampo.type = 'file';
+            //Ahora creamos un link para poder eliminar un campo que ya no deseemos
+               a = document.createElement('a');
+            //El link debe tener el mismo nombre de la div padre, para efectos de localizarla y eliminarla
+               a.name = nDiv.id;
+            //Este link no debe ir a ningun lado
+               a.href = '#';
+            //Establecemos que dispare esta funcion en click
+               a.onclick = elimCamp;
+            //Con esto ponemos el texto del link
+               a.innerHTML = 'Eliminar';
+            //Bien es el momento de integrar lo que hemos creado al documento,
+            //primero usamos la función appendChild para adicionar el campo file nuevo
+               nDiv.appendChild(nCampo);
+            //Adicionamos el Link
+               nDiv.appendChild(a);
+            //Ahora si recuerdan, en el html hay una div cuyo id es 'adjuntos', bien
+            //con esta función obtenemos una referencia a ella para usar de nuevo appendChild
+            //y adicionar la div que hemos creado, la cual contiene el campo file con su link de eliminación:
+               container = document.getElementById('adjuntos');
+               container.appendChild(nDiv);
+            }
+            //con esta función eliminamos el campo cuyo link de eliminación sea presionado
+            elimCamp = function (evt){
+               evt = evento(evt);
+               nCampo = rObj(evt);
+               div = document.getElementById(nCampo.name);
+               div.parentNode.removeChild(div);
+            }
+            //con esta función recuperamos una instancia del objeto que disparo el evento
+            rObj = function (evt) { 
+               return evt.srcElement ?  evt.srcElement : evt.target;
+            }
+            
+            </script>
     
     </head>
     
@@ -91,7 +149,7 @@
                                     <li>
                                         <div class="dropdown-messages-box">
                                             <a class="dropdown-item float-left" href="profile.html">
-                                                <img alt="image" class="rounded-circle" src="img/a7.jpg">
+                                                <img alt="image" class="rounded-circle" src="">
                                             </a>
                                             <div class="media-body">
                                                 <small class="float-right">46h ago</small>
@@ -104,7 +162,7 @@
                                     <li>
                                         <div class="dropdown-messages-box">
                                             <a class="dropdown-item float-left" href="profile.html">
-                                                <img alt="image" class="rounded-circle" src="img/a4.jpg">
+                                                <img alt="image" class="rounded-circle" src="">
                                             </a>
                                             <div class="media-body ">
                                                 <small class="float-right text-navy">5h ago</small>
@@ -117,7 +175,7 @@
                                     <li>
                                         <div class="dropdown-messages-box">
                                             <a class="dropdown-item float-left" href="profile.html">
-                                                <img alt="image" class="rounded-circle" src="img/profile.jpg">
+                                                <img alt="image" class="rounded-circle" src="">
                                             </a>
                                             <div class="media-body ">
                                                 <small class="float-right">23h ago</small>
@@ -209,9 +267,6 @@
 {% endblock %}
 <!--------------------------------------------------Footer-------------------------------------------------------------------------------------->       
                 <div class="footer">
-                    <div class="float-right">
-                        10GB of <strong>250GB</strong> Free.
-                    </div>
                     <div>
                         <strong>Copyright</strong> Example Company &copy; 2014-2018
                     </div>
@@ -220,6 +275,13 @@
             </div>
         </div>
 
+        <script>
+            Dropzone.options.dropzoneForm = {
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 2, // MB
+                dictDefaultMessage: "<strong>Drop files here or click to upload. </strong></br> (This is just a demo dropzone. Selected files are not actually uploaded.)"
+            }
+        </script>
 
 
 <!-- Mainly scripts -->
@@ -231,6 +293,17 @@
 
 <!-- Custom and plugin javascript -->
 <script src="{% static 'js/inspinia.js' %}"></script>
-<script src="{% static 'js/plugins/pace/pace.min.js' }"></script>
+<script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+<!-- Jasny -->
+<script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
+
+<!-- DROPZONE -->
+<script src="{% static 'js/plugins/dropzone/dropzone.js' %}"></script>
+
+<!-- CodeMirror -->
+<script src="{% static 'js/plugins/codemirror/codemirror.js' %}"></script>
+<script src="{% static 'js/plugins/codemirror/mode/xml/xml.js' %}"></script>
+
 </body>
 </html>
