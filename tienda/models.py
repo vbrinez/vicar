@@ -6,15 +6,19 @@ from pickle import TRUE
 
 # Create your models here.
 
-class producto (models.Model):
-    codigo=models.CharField(max_length=50)
-    nombre=models.CharField(max_length=50)
+class publicaciones(models.Model):
     mini_descripcion=models.CharField(max_length=60, null=TRUE)
     descripcion=models.TextField(null=TRUE)
-    ruta_img=models.CharField(max_length=255,null=TRUE)
     categoria=models.CharField(max_length=50)
-    fecha=models.DateTimeField(auto_now=TRUE,null=TRUE)
+    codigo_producto=models.CharField(max_length=50)
+    nombre_producto=models.CharField(max_length=50)
     precio=models.IntegerField()
     stock=models.IntegerField()
     status=models.IntegerField()
+    fecha=models.DateTimeField(auto_now=TRUE,null=TRUE)
+    id_vendedor=models.IntegerField()
+
+class imagenes(models.Model):
+    ruta_img=models.CharField(max_length=255,null=TRUE)
+    id_publicacion=models.IntegerField()
 
