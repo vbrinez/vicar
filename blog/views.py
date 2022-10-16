@@ -1,3 +1,4 @@
+import math
 from urllib import request
 from django.shortcuts import render,redirect
 from .models import Usuario, Publicaciones,Categoria
@@ -21,11 +22,27 @@ def home(request):
             ).distinct()
         else:
             publicaciones=Publicaciones.objects.all()   
+            articulos=publicaciones.objects.all().count()
+            articulosXfilas=3
+            cantfilas=math.ceil(articulos/articulosXfilas)
+            cantfilas=cantfilas*articulosXfilas
+            sucesion=set()
+            for i in range(cantfilas):
+                if ((cantfilas-i)%articulosXfilas==0):
+                    sucesion={i}
     else:
-        publicaciones=Publicaciones.objects.all()
+        articulos=Publicaciones.objects.all()
+        cant_articulos=Publicaciones.objects.all().count()
+        articulosXfilas=3
+        cantfilas=math.ceil(cant_articulos/articulosXfilas)
+        cantfilas=cantfilas*articulosXfilas
+        sucesion=set()
+        for i in range(cantfilas):
+            if ((cantfilas-i)%articulosXfilas==0):
+                sucesion={i}
     usuarios=Usuario.objects.all()
     categoria=Categoria.objects.all()
-    return render(request,"home.html",{"publicaciones":publicaciones,"usuarios":usuarios,"categoria":categoria})
+    return render(request,"home.html",{"publicaciones":articulos,"usuarios":usuarios,"categoria":categoria,"sucesion":sucesion})
 
 def landing(request):
     buscar= request.GET.get("busqueda")
