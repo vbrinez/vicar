@@ -99,44 +99,50 @@
         <section id="features" class="container services">
             <div class="wrapper wrapper-content  animated fadeInRight blog">
                 <div class="row">
-                    <div class="col-lg-4">
-                        {% for n in publicaciones %} 
-                        <div class="ibox">
-                            <div class="ibox-content">
-                                <a href="/articulo/{{n.id_publicaciones}}" class="btn-link">
-                                    <h2 class="post-title">{{n.titulo}}</h2>
-                                    <p class="post-subtitle">{{n.resumen}}</p>
-                                </a>
-                                <div class="small m-b-xs">
-                                    {% for m in usuarios %}
-                                        {% if m.id_usuario == n.id_usuario %}
-                                        <a href="/perfil/{{n.id_usuario}}">
-                                    <strong>{{m.nombre}} {{m.apellido}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{n.fecha}}</span> </a>
-                                    {% endif %}
-                                    {% endfor %}
-                                </div>
-                                <hr class="my-4" />
-                                    
-                                
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h5>Tags:</h5>
-                                        <button class="btn btn-white btn-xs" type="button">New</button>
-                                        <button class="btn btn-white btn-xs" type="button">Model</button>
-                                        <button class="btn btn-white btn-xs" type="button">Publishing</button>
+                    {% for n in publicaciones %}
+                        {% if forloop.counter in sucesion  %}
+                            <div class="row">
+                        {% endif %}
+                        <div class="col-md-4">
+                            <div class="ibox">
+                                <div class="ibox-content">
+                                    <a href="/blog/articulo/{{n.id_publicaciones}}" class="btn-link">
+                                        <h2 class="post-title" style="text-decoration: none;">{{n.titulo}}</h2>
+                                        <p class="post-subtitle">{{n.resumen}}</p>
+                                    </a>
+                                    <div class="small m-b-xs">
+                                        {% for m in usuarios %}
+                                            {% if m.id_usuario == n.id_usuario %}
+                                                <a href="/perfil/{{n.id_usuario}}">
+                                                <strong>{{m.nombre}} {{m.apellido}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{n.fecha}}</span> </a>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="small text-right">
-                                            <h5>Stats:</h5>
-                                            <div> <i class="fa fa-comments-o"> </i> 36 comments </div>
-                                            <i class="fa fa-eye"> </i> 100 views
+                                    <hr class="my-4" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Tags:</h5>
+                                            <button class="btn btn-white btn-xs" type="button">New</button>
+                                            <button class="btn btn-white btn-xs" type="button">Model</button>
+                                            <button class="btn btn-white btn-xs" type="button">Publishing</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="small text-right">
+                                                <h5>Stats:</h5>
+                                                <div> <i class="fa fa-comments-o"> </i> 36 comments </div>
+                                                <i class="fa fa-eye"> </i> 100 views
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
-                      
+                        {% if forloop.counter in sucesion  %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                 </div> 
+            </div>
         </section>
 
 
