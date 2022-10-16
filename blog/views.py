@@ -3,6 +3,8 @@ from django.shortcuts import render,redirect
 from .models import Usuario, Publicaciones,Categoria
 from django.db.models import Q
 
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
 # Create your views here.
 def home(request):
     buscar= request.GET.get("busqueda")
@@ -23,6 +25,27 @@ def home(request):
     usuarios=Usuario.objects.all()
     categoria=Categoria.objects.all()
     return render(request,"home.html",{"publicaciones":publicaciones,"usuarios":usuarios,"categoria":categoria})
+
+def landing(request):
+    
+    buscar= request.GET.get("busqueda")
+    if buscar:
+        publicaciones_cuantos = Publicaciones.objects.filter(
+            Q(titulo__icontains= buscar) |
+            Q(resumen__icontains = buscar)
+            ).distinct().count()
+        if publicaciones_cuantos>=1:
+            publicaciones = Publicaciones.objects.filter(
+            Q(titulo__icontains= buscar) |
+            Q(resumen__icontains = buscar)
+            ).distinct()
+        else:
+            publicaciones=Publicaciones.objects.all()   
+    else:
+        publicaciones=Publicaciones.objects.all()
+    usuarios=Usuario.objects.all()
+    categoria=Categoria.objects.all()
+    return render(request,"landing.html",{"publicaciones":publicaciones,"usuarios":usuarios,"categoria":categoria})
 
 def ver(request):
     usuarios=Usuario.objects.all()
@@ -103,3 +126,26 @@ def modificarUsuario(request):
     usuario.tipo=tipo
     usuario.save()
     return redirect('/blog/ver')
+
+def login_request(request):
+    
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data = request.POST)
+        if form.is_valid():
+            user = form.cleaned_data.get('username')
+            pwd = form.cleaned_data.get('password')
+
+            user = authenticate(username = user, password = pwd)
+
+            if user is not None:
+                login(request. user)
+                return render(request, 'home.html')
+            else:
+                return render(request, 'login.html', {'form':form})
+        else:
+            return render(request, 'login.html', {'form':form})
+   
+    form = AuthenticationForm()
+    return render(request, 'login.html' , {'form': form})
+    
+    return 0
