@@ -139,7 +139,7 @@ def login_request(request):
 
             if user is not None:
                 login(request. user)
-                return render(request, 'home.html')
+                return render(request, '/blog/home.html')
             else:
                 return render(request, 'login.html', {'form':form})
         else:

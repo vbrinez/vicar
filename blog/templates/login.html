@@ -23,12 +23,12 @@ login
             </p>
             <p>Login in. To see it in action.</p>
             
-            <form class="m-t" role="form" action="/login_request/" method="POST"> {% csrf_token %}
+            <form class="m-t" role="form"  method="POST"> {% csrf_token %}
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Username" required="">
+                    <input type="username" class="form-control" placeholder="Username" required="" name="{{form.username.name}}">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="">
+                    <input type="password" class="form-control" placeholder="Password" required="" name="{{form.password.name}}">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
 
