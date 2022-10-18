@@ -143,9 +143,9 @@ def login_request(request):
             else:
                 return render(request, 'login.html', {'form':form})
         else:
-            return render(request, 'login.html', {'form':form})
+            return render(request, 'error2.html', {'form':form})
    
     form = AuthenticationForm()
-    return render(request, 'login.html' , {'form': form})
+    return render(request, 'aquino.html' , {'form': form})
     
-    return 0
+    

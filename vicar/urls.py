@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.contrib.auth.views import LoginView, LogoutView
+
+
 #from tienda.views import verproductos
 from blog.views import home, landing, login_request, articulo
 
@@ -23,6 +26,9 @@ urlpatterns = [
     path('blog/',include('blog.urls')),
     path('tienda/',include('tienda.urls')),
     path('',landing),
-    path('login/', login_request),
+    #path('login/', login_request),
     path('articulo/', articulo),
+    
+    path('login/', include('seguridad.urls')),
+    
 ]
