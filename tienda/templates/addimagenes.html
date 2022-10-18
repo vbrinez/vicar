@@ -20,9 +20,6 @@
             <a href="/blog/home">Home Blog</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="/tienda/editarproducto/{{id}}">Editar producto ({{ id }})</a>
-        </li>
-        <li class="breadcrumb-item">
             <a href="/blog/administracion/tienda">Tienda Administracion</a>
         </li>
     </ol>
@@ -47,11 +44,12 @@
                                     </div>
                                     <div class="ibox-content">
                                         <p>
-                                            <strong>Imagenes</strong>
+                                            <strong>Dropzone.js</strong> is a light weight JavaScript library that turns an HTML element into a dropzone. This means that a user can drag and drop a file onto it, and the file gets uploaded to the server via AJAX.
                                         </p>
-                                        <form action="/tienda/agregar_imagenes/" class="dropzone" id="dropzoneForm" method="POST"> {% csrf_token %}
+                                        <form action="/tienda/agregar_imagenes/" class="dropzone" id="dropzoneForm" method="POST"> {% csrf_token %}>
+                                            <input type="number" min="0" class="form-control" id="id_publicacion" name="id_publicacion" value="{{ id }}" hidden>
                                             <div class="fallback">
-                                                <input name="file" type="file" accept=".jpg" multiple />
+                                                <input name="file" type="file" multiple />
                                             </div>
                                         </form>
                                         <div class="form-group row">
@@ -74,16 +72,13 @@
 {% block scripts %}
 <!-- DROPZONE -->
 <script src="{% static 'js/plugins/dropzone/dropzone.js' %}"></script>
-     
+
 
 <script>
-    Dropzone.options.dropzoneForm = { // camelized version of the `id`
-    paramName: "file", // The name that will be used to transfer the file
-    maxFilesize: 2, // MB
-    
-    };
-  </script>
-
-
-
+    Dropzone.options.dropzoneForm = {
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 2, // MB
+        dictDefaultMessage: "<strong>Drop files here or click to upload. </strong></br> (This is just a demo dropzone. Selected files are not actually uploaded.)"
+    }
+</script>
 {% endblock %}

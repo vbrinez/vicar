@@ -5,8 +5,6 @@ from unittest.util import _MAX_LENGTH
 from django.db import models
 from pickle import TRUE
 
-from pkg_resources import to_filename
-
 # Create your models here.
 
 class publicaciones(models.Model):
@@ -24,6 +22,6 @@ class publicaciones(models.Model):
 
 class imagenes(models.Model):
     id_imagenes = models.IntegerField(unique=TRUE,null=TRUE)
-    imagen=models.ImageField(upload_to="static/img/productos",null=TRUE)
+    ruta_img=models.CharField(max_length=255,null=TRUE)
     id_publicacion=models.IntegerField(null=TRUE)
 
