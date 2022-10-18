@@ -19,7 +19,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 #from tienda.views import verproductos
-from blog.views import home, landing, login_request, articulo
+from blog.views import home, landing, articulo
 
 urlpatterns = [
     path('admin/', admin.site.urls),

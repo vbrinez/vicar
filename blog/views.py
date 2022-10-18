@@ -126,26 +126,3 @@ def modificarUsuario(request):
     usuario.tipo=tipo
     usuario.save()
     return redirect('/blog/ver')
-
-def login_request(request):
-    
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data = request.POST)
-        if form.is_valid():
-            user = form.cleaned_data.get('username')
-            pwd = form.cleaned_data.get('password')
-
-            user = authenticate(username = user, password = pwd)
-
-            if user is not None:
-                login(request. user)
-                return render(request, '/blog/home.html')
-            else:
-                return render(request, 'login.html', {'form':form})
-        else:
-            return render(request, 'error2.html', {'form':form})
-   
-    form = AuthenticationForm()
-    return render(request, 'aquino.html' , {'form': form})
-    
-    
