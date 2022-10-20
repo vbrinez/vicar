@@ -7,7 +7,31 @@
     <h1>Agregar Usuarios</h1>
     <div class="card">
         <div class="card-body">
-            <form action="/blog/registrarUsuario/" method="POST"> {% csrf_token %}
+            <form action="/blog/registrarUsuario/" method="POST" onsubmit="checkForm(this); return false;"> {% csrf_token %}
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre de Usuario</label>
+                    <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="pw1" name="pw1" placeholder="Nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Validadr Contraseña</label>
+                    <input type="password" class="form-control" id="pw2" name="pw2" placeholder="Nombre" required>
+                </div>
+                <div id="pswd_info">
+  <h4>La contraseña debe cumplir los siguientes requerimientos:</h4>
+  <ul>
+    <li id="letter" class="invalid">Al menos <strong>una letra</strong></li>
+    <li id="capital" class="invalid">Al menos <strong>una letra mayúscula</strong></li>
+    <li id="number" class="invalid">Al menos <strong>un número</strong></li>
+    <li id="length" class="invalid">Al menos <strong>8 carácteres</strong></li>
+    <li id="null" class="invalid">Debe <strong>confirmar la contraseña</strong></li>
+    <li id="match" class="invalid">Las contraseñas <strong>deben cohincidir</strong></li>
+    <li id="blank" class="invalid">Las contraseñas <strong>no deben tener espacios</strong></li>
+  </ul>
+</div>
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
@@ -40,4 +64,45 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        function checkPassword(valor){
+            var myregex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; 
+            if(myregex.test(valor)){
+                alert(valor+" es valido :-) !");
+                return true;        
+            }else{
+                alert(valor+" NO es valido!");
+                return false;        
+            } 
+        }  
+    
+        function checkForm(form){
+            if(form.username.value == "") {
+                alert("Error: Debe escribir Usuario!");
+                form.username.focus();
+                return false;
+            }
+            re = /^\w+$/;
+            if(!re.test(form.username.value)) {
+                alert("Error: Nombre de usuario debe contener únicamente letras, numeros y underscores!");
+                form.username.focus();
+                return false;
+            }
+            if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
+                if(!checkPassword(form.pwd1.value)) {
+                    alert("La contraseña no es valida!");
+                    form.pwd1.focus();
+                    return false;
+                }
+            } else {
+                alert("Error: las contraseñas no coinciden!");
+                form.pwd1.focus();
+                return false;
+            } 
+                return true;
+        }
+    </script>
 {% endblock %}

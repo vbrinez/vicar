@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.views import LoginView, LogoutView
+from seguridad.views import Login, logout
 
 
 #from tienda.views import verproductos
-from blog.views import home, landing, articulo
+from blog.views import landing, articulo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +29,7 @@ urlpatterns = [
     path('',landing),
     #path('login/', login_request),
     path('articulo/', articulo),
-    
-    path('login/', include('seguridad.urls')),
+    path('login/', Login),
+    path('logout/', logout),
     
 ]

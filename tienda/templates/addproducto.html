@@ -1,7 +1,12 @@
 {% extends "./base_tienda.html" %}
+{% load static %}
+
+
 {% block title %}
     Tienda | Nueva Publicacion
 {% endblock %}
+
+
 
 {% block direcciones %}
 <div class="col-lg-10">
@@ -21,74 +26,74 @@
 
 {% block body %}
     <h1>Agregar Publicacion</h1>
-    <div class="card">
-        <div class="card-body">
-            <form action="/tienda/agregar_publicacion/" method="POST"> {% csrf_token %}
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre Producto</label>
-                    <input type="text" class="form-control" maxlength="60" id="nombre_producto" name="nombre_producto" placeholder="Nombre del producto" required>
-                </div>
-                <div class="mb-3">
-                    <label for="codigo" class="form-label">Codigo Producto</label>
-                    <input type="text" class="form-control" maxlength="60" id="codigo_producto" name="codigo_producto" placeholder="Codigo del producto" required>
-                </div>
-                <div class="mb-3">
-                    <label for="minidescrip" class="form-label">Mini Descripcion</label>
-                    <input type="text" class="form-control" maxlength="60" id="minidescrip" name="minidescrip" placeholder="Pequeña descripcion, Max 60 caracteres" required>
-                </div>
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripcion</label>
-                    <textarea rows="4" cols="50" type="text" class="form-control" id="descrip" name="descrip" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="categoria" class="form-label">Categoria</label>
-                    <input type="text" class="form-control" id="categoria" name="categoria" placeholder=" Categoria" required>
-                </div>
-                <div class="mb-3">
-                    <label for="precio" class="form-label">Precio</label>
-                    <input type="number" min="0" class="form-control" id="precio" name="precio" placeholder="Precio" required>
-                </div>
-                <div class="mb-3">
-                    <label for="stock" class="form-label">Stock</label>
-                    <input type="number" min="0" class="form-control" id="stock" name="stock" placeholder="Stock" required>
-                </div>
 
-
-               <!-- <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox">
-                            <form name="formu" id="formu" action="#" method="post" enctype="multipart/form-data">
-                                <dl>            
-                              <dt><label>Archivos a Subir:</label></dt>
-                                        Esta div contendrá todos los campos file que creemos
-                              <dd><div id="adjuntos">
-                                         Hay que prestar atención a esto, el nombre de este campo debe siempre terminar en []
-                                   como un vector, y ademas debe coincidir con el nombre que se da a los campos nuevos 
-                                   en el script 
-                              <input type="file" name="archivos[]" /><br />
-                              </div></dd>
-                              <dt><a href="#" onClick="addCampo()">Subir otro archivo</a></dt>      
-                                </dl>
-                           </form>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <form action="/tienda/agregar_publicacion/" method="POST"> {% csrf_token %}
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Nombre Producto</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" maxlength="60" id="nombre_producto" name="nombre_producto" placeholder="Nombre del producto" required>
+                            </div>
                         </div>
-                    </div>
-                </div>-->
-
-
-
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select name="status" id="status" required>
-                        <option value="">Seleccione Una opción</option>
-                        <option value="1">Activa</option>
-                        <option value="0">Inactiva</option>
-                    </select>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Codigo Producto</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" maxlength="60" id="codigo_producto" name="codigo_producto" placeholder="Codigo del producto" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Mini Descripcion</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" maxlength="60" id="minidescrip" name="minidescrip" placeholder="Pequeña descripcion, Max 60 caracteres" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Descripcion</label>
+                            <div class="col-sm-10">
+                                <textarea rows="4" cols="50" type="text" class="form-control" id="descrip" name="descrip" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Categoria</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="categoria" name="categoria" placeholder=" Categoria" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Precio</label>
+                            <div class="col-sm-10">
+                                <input type="number" min="0" class="form-control" id="precio" name="precio" placeholder="Precio" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Stock</label>
+                            <div class="col-sm-10">
+                                <input type="number" min="0" class="form-control" id="stock" name="stock" placeholder="Stock" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-10">
+                                <select name="status" id="status" required>
+                                    <option value="">Seleccione Una opción</option>
+                                    <option value="1">Activa</option>
+                                    <option value="0">Inactiva</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <input type="number" min="0" class="form-control" id="vendedor" name="vendedor" value="1" hidden>
+                                <button class="btn btn-white btn-sm" type="submit">Cancel</button>
+                                <button class="btn btn-success" type="submit">Siguiente Paso</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-gruop">
-                    <input type="number" min="0" class="form-control" id="vendedor" name="vendedor" value="1" hidden>
-                    <button type="submit" class="btn btn-success btn-block">Guardar</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 

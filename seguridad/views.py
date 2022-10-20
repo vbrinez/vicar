@@ -1,3 +1,4 @@
+import django
 from django.shortcuts import render
 #Importamos la vista genérica FormView
 from django.views.generic.edit import FormView
@@ -5,7 +6,7 @@ from django.http.response import HttpResponseRedirect
 from django.urls import reverse_lazy
 #Importamos el formulario de autenticación de django
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 
 # Create your views here.
 def Login(request):
@@ -28,3 +29,8 @@ def Login(request):
    
     form = AuthenticationForm()
     return render(request, 'login.html' , {'form': form})
+
+def logout(request):
+    print("logout")
+    django.contrib.auth.logout(request)
+    return render(request, 'landing.html')

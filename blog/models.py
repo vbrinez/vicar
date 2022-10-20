@@ -13,6 +13,7 @@ class Usuario(models.Model):
 
     def __str__(self):
         return "({}) {} {} [{}]".format(self.id_usuario, self.nombre, self.apellido, self.tipo)
+        
 class user(AbstractUser):
     
     avatar = models.ImageField('avatar para tu perfil', upload_to='avatars/', blank=True, null=True)

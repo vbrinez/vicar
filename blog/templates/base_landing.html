@@ -28,7 +28,6 @@
         <div class="navbar-wrapper">
                 <nav class="navbar navbar-default navbar-fixed-top navbar-expand-md" role="navigation">
                     <div class="container">
-                        <a class="navbar-brand" href="index.html">WEBAPPLAYERS</a>
                         <div class="navbar-header page-scroll">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
                                 <i class="fa fa-bars"></i>
@@ -36,12 +35,16 @@
                         </div>
                         <div class="collapse navbar-collapse justify-content-end" id="navbar">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a class="nav-link page-scroll" href="#page-top">Home</a></li>
-                                <li><a class="nav-link page-scroll" href="#features">Pages</a></li>
-                                <li><a class="nav-link page-scroll" href="#team">Nosotros</a></li>
-                                <li><a class="nav-link page-scroll" href="#testimonials">Login</a></li>
-                                <li><a class="nav-link page-scroll" href="#pricing">SingUp</a></li>
-                                
+                                <li><a class="nav-link page-scroll" href="/#page-top">Home</a></li>
+                                <li><a class="nav-link page-scroll" href="/blog/home">Blog</a></li>
+                                <li><a class="nav-link page-scroll" href="/tienda/verproducto">Tienda</a></li>
+                                <li><a class="nav-link page-scroll" href="/#features">Pages</a></li>
+                                <li><a class="nav-link page-scroll" href="/#team">Nosotros</a></li>
+                                {% if request.user.is_authenticated %}
+                                    <li><a class="nav-link page-scroll" href="/logout">Logout</a></li>
+                                {% else %}
+                                    <li><a class="nav-link page-scroll" href="/login">Login</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
@@ -56,14 +59,12 @@
                 <div class="carousel-item active">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>We craft<br/>
-                                brands, web apps,<br/>
-                                and user interfaces<br/>
-                                we are IN+ studio</h1>
-                            <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                            <h1>Quieres Saber todo<br/>
+                                sobre el mundo de los autos<br/>
+                                mira el blog<br/>
+                                ViCar</h1>
                             <p>
-                                <a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>
-                                <a class="caption-link" href="#" role="button">Inspinia Theme</a>
+                                <a class="btn btn-lg btn-primary" href="/#team" role="button">Quienes somos</a>
                             </p>
                         </div>
                         <div class="carousel-image wow zoomIn">
@@ -77,9 +78,6 @@
                 <div class="carousel-item">
                     <div class="container">
                         <div class="carousel-caption blank">
-                            <h1>We create meaningful <br/> interfaces that inspire.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
                         </div>
                     </div>
                     <!-- Set background for slide in css -->
