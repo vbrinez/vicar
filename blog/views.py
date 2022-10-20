@@ -106,7 +106,7 @@ def registrarUsuario(request):
     nombre=request.POST['nombre']
     apellido=request.POST['apellido']
     correo=request.POST['correo']
-    password=request.POST['password']
+    password=request.POST['pw1']
     telefono=request.POST['telefono']
     tipo=request.POST['tipo_usuario']
     usuario=user.objects.create(username=nombre,first_name=nombre,last_name=apellido,email=correo,password=password)

@@ -2,18 +2,18 @@ from pickle import TRUE
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
-class Usuario(models.Model):
-    id_usuario=models.IntegerField(primary_key=True)
-    nombre=models.CharField(max_length=50)
-    apellido=models.CharField(max_length=50)
-    correo=models.EmailField()
-    telefono=models.IntegerField()
-    tipo=models.CharField(max_length=1)
-
-    def __str__(self):
-        return "({}) {} {} [{}]".format(self.id_usuario, self.nombre, self.apellido, self.tipo)
-        
+## Create your models here.
+#class Usuario(models.Model):
+#    id_usuario=models.IntegerField(primary_key=True)
+#    nombre=models.CharField(max_length=50)
+#    apellido=models.CharField(max_length=50)
+#    correo=models.EmailField()
+#    telefono=models.IntegerField()
+#    tipo=models.CharField(max_length=1)
+#
+#    def __str__(self):
+#        return "({}) {} {} [{}]".format(self.id_usuario, self.nombre, self.apellido, self.tipo)
+#        
 class user(AbstractUser):
     
     avatar = models.ImageField('avatar para tu perfil', upload_to='avatars/', blank=True, null=True)
