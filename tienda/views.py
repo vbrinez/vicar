@@ -4,8 +4,9 @@ from urllib import request
 from django.shortcuts import render,redirect
 from django.db.models import Q
 from tienda.models import publicaciones
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-
+@login_required(login_url="/login")
 def verproductos(request):
     todaspublicaciones=publicaciones.objects.all()
     productos=publicaciones.objects.all().count()
