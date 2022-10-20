@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.urls import path,include
 from tienda.views import verproductos
-from blog.views import home,ver,mod,add,registrarUsuario,editarUsuario, eliminarUsuario, modificarUsuario, addpublicacion,addcategoria,registrarCategoria,registrarPublicacion, readme, perfil, articulo, login
-
+from blog.views import home,ver,mod,add,registrarUsuario,editarUsuario, eliminarUsuario, modificarUsuario, addpublicacion,addcategoria,registrarCategoria,registrarPublicacion, readme, perfil, articulo
 urlpatterns = [
     path('readme',readme),
     path('home',home),
