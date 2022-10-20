@@ -1,7 +1,7 @@
 import math
 from urllib import request
 from django.shortcuts import render,redirect
-from .models import Usuario, Publicaciones,Categoria
+from .models import user, Publicaciones,Categoria
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -40,7 +40,7 @@ def home(request):
         for i in range(cantfilas):
             if ((cantfilas-i)%articulosXfilas==0):
                 sucesion={i}
-    usuarios=Usuario.objects.all()
+    usuarios=user.objects.all()
     categoria=Categoria.objects.all()
     return render(request,"home.html",{"publicaciones":articulos,"usuarios":usuarios,"categoria":categoria,"sucesion":sucesion})
 
@@ -60,18 +60,18 @@ def landing(request):
             publicaciones=Publicaciones.objects.all()   
     else:
         publicaciones=Publicaciones.objects.all()
-    usuarios=Usuario.objects.all()
+    usuarios=user.objects.all()
     categoria=Categoria.objects.all()
     return render(request,"landing.html",{"publicaciones":publicaciones,"usuarios":usuarios,"categoria":categoria})
 
 @login_required(login_url="/login")
 def ver(request):
-    usuarios=Usuario.objects.all()
+    usuarios=user.objects.all()
     return render(request, "ver.html", {"usuarios":usuarios})
 
 @login_required(login_url="/login")
 def mod(request):
-    usuario=Usuario.objects.all()
+    usuario=user.objects.all()
     return render(request,"mod.html", {"usuarios":usuario})
 
 @login_required(login_url="/login")
@@ -87,7 +87,7 @@ def readme(request):
 
 @login_required(login_url="/login")
 def addpublicacion(request):
-    usuarios=Usuario.objects.all()
+    usuarios=user.objects.all()
     categorias=Categoria.objects.all()
     return render(request, "addpublicacion.html", {"usuarios":usuarios,"categorias":categorias})
 
@@ -106,9 +106,10 @@ def registrarUsuario(request):
     nombre=request.POST['nombre']
     apellido=request.POST['apellido']
     correo=request.POST['correo']
+    password=request.POST['password']
     telefono=request.POST['telefono']
     tipo=request.POST['tipo_usuario']
-    usuario=Usuario.objects.create(nombre=nombre,apellido=apellido,correo=correo,telefono=telefono,tipo=tipo)
+    usuario=user.objects.create(username=nombre,first_name=nombre,last_name=apellido,email=correo,password=password)
     return redirect('/blog/ver')
 
 @login_required(login_url="/login")
@@ -119,24 +120,24 @@ def registrarCategoria(request):
 
 @login_required(login_url="/login")
 def eliminarUsuario(request, id):
-    usuario=Usuario.objects.get(id_usuario=id)
-    usuario.delete()
+    usuario=user.objects.get(id_usuario=id)
+    user.delete()
     return redirect('/blog/ver')
 
 @login_required(login_url="/login")
 def editarUsuario(request, id):
-    usuario=Usuario.objects.get(id_usuario=id)
+    usuario=user.objects.get(id_usuario=id)
     return render(request, "editar.html", {'usuario':usuario})
 
 @login_required(login_url="/login")
 def perfil(request, id):
-    usuario=Usuario.objects.get(id_usuario=id)
+    usuario=user.objects.get(id_usuario=id)
     return render(request, "perfil.html", {'usuario':usuario})
 
 @login_required(login_url="/login")
 def articulo(request, id):
     publicacion=Publicaciones.objects.get(id_publicaciones=id)
-    usuarios=Usuario.objects.all()
+    usuarios=user.objects.all()
     categoria=Categoria.objects.all()
     return render(request, "post.html", {'publicaciones':publicacion,"usuarios":usuarios,"categorias":categoria})
 
@@ -148,11 +149,11 @@ def modificarUsuario(request):
     telefono=request.POST['telefono']
     correo=request.POST['correo']
     tipo=request.POST['tipo_usuario']
-    usuario=Usuario.objects.get(id_usuario=id)
-    usuario.nombre=nombre
-    usuario.apellido=apellido
-    usuario.correo=correo
-    usuario.telefono=telefono
-    usuario.tipo=tipo
-    usuario.save()
+    usuario=user.objects.get(id_usuario=id)
+    user.nombre=nombre
+    user.apellido=apellido
+    user.correo=correo
+    user.telefono=telefono
+    user.tipo=tipo
+    user.save()
     return redirect('/blog/ver')
