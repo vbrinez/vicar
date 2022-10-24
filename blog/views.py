@@ -126,7 +126,7 @@ def eliminarUsuario(request, id):
 
 @login_required(login_url="/login")
 def editarUsuario(request, id):
-    usuario=user.objects.get(id_usuario=id)
+    usuario=user.objects.get(id=id)
     return render(request, "editar.html", {'usuario':usuario})
 
 @login_required(login_url="/login")

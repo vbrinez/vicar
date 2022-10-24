@@ -9,6 +9,7 @@
             <thead>
                 <tr>
                     <th> # </th>
+                    <th> Nombre de Usuario </th>
                     <th> Nombre </th>
                     <th> Correo </th>
                     <th> Telefono </th>
@@ -19,8 +20,9 @@
                 {% for n in usuarios %}
                     <tr>
                         <td> {{forloop.counter}} </td>
-                        <td> {{n.nombre}} {{n.apellido}} </td>
-                        <td> {{n.correo}} </td>
+                        <td> {{n.username}} </td>
+                        <td> {{n.first_name}} {{n.last_name}} </td>
+                        <td> {{n.email}} </td>
                         <td> {{n.telefono}} </td>
                         <td> {{n.tipo}} </td>
                     </tr>
