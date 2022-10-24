@@ -109,7 +109,15 @@ def registrarUsuario(request):
     password=request.POST['pw1']
     telefono=request.POST['telefono']
     tipo=request.POST['tipo_usuario']
-    usuario=user.objects.create(username=nombre,first_name=nombre,last_name=apellido,email=correo,password=password)
+    if tipo == 'A':
+        is_superuser = 1
+    else:
+        is_superuser = 0
+    if  tipo == 'B':
+        is_staff = 1
+    else:
+        is_staff = 0
+    usuario=user.objects.create(username=nombre,first_name=nombre,last_name=apellido,email=correo,password=password, is_superuser=is_superuser, is_staff=is_staff)
     return redirect('/blog/ver')
 
 @login_required(login_url="/login")
