@@ -17,9 +17,9 @@ from django.contrib.auth.models import AbstractUser
 class user(AbstractUser):
     
     avatar = models.ImageField('avatar para tu perfil', upload_to='avatars/', blank=True, null=True)
-    
+    telefono=models.IntegerField(null=True)
     def __str__(self):
-        return "({}) {} {} {} {} {} {} {} {} {} {} {} [{}]".format(self.username, self.first_name, self.last_name, self.email, self.password, self.groups, self.user_permissions, self. is_staff, self.is_active, self.is_superuser, self.last_login, self.date_joined, self.avatar)
+        return "({}) {} {} {} {} {} {} {} {} {} {} {} {} [{}]".format(self.username, self.first_name, self.last_name, self.email, self.password, self.groups, self.user_permissions, self. is_staff, self.is_active, self.is_superuser, self.last_login, self.date_joined, self.avatar, self.telefono)
 
 class Categoria (models.Model):
     id_categoria=models.AutoField(primary_key=True)
