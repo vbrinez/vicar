@@ -1,4 +1,4 @@
-# entrega_intermedia  README.MD
+# Entrega_Final  README.MD
  CJ&amp;VB
 
 Este repositorio contiene la entrega del proyecto final del Curso de Python en CODERHOUSE.
