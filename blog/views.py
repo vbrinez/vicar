@@ -74,7 +74,7 @@ def mod(request):
     usuario=user.objects.all()
     return render(request,"mod.html", {"usuarios":usuario})
 
-@login_required(login_url="/login")
+#@login_required(login_url="/login")
 def add(request):
     return render(request,"add.html")
 
@@ -101,7 +101,7 @@ def registrarPublicacion(request):
     publicacion=Publicaciones.objects.create(titulo=titulo,resumen=resumen,contenido=articulo,id_categoria=id_categoria,id_usuario=id_usuario)
     return redirect('/blog/home')
 
-@login_required(login_url="/login")
+
 def registrarUsuario(request):
     nombre=request.POST['nombre']
     apellido=request.POST['apellido']
