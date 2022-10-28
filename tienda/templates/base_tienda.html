@@ -232,6 +232,19 @@
 <!-- Jasny -->
 <script src="{% static 'js/plugins/jasny/jasny-bootstrap.min.js' %}"></script>
 
+
+<!-- SUMMERNOTE -->
+<script src="{% static 'js/plugins/summernote/summernote-bs4.js' %}"></script>
+
+
+<script>
+    $(document).ready(function(){
+
+        $('.summernote').summernote();
+
+   });
+</script>
+
 {% block scripts %} {% endblock %}
 </body>
 </html>

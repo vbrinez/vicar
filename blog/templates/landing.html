@@ -21,9 +21,9 @@
                             </a>
                             <div class="small m-b-xs">
                                 {% for m in usuarios %}
-                                    {% if m.id_usuario == n.id_usuario %}
+                                    {% if m.id == n.id_usuario %}
                                         <a href="/perfil/{{n.id_usuario}}">
-                                        <strong>{{m.nombre}} {{m.apellido}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{n.fecha}}</span> </a>
+                                        <strong>{{m.first_name}} {{m.last_name}}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i> {{n.fecha}}</span> </a>
                                     {% endif %}
                                 {% endfor %}
                             </div>

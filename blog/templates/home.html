@@ -42,7 +42,7 @@
                     <p class="post-meta">
                         Posteado por
                         {% for m in usuarios %}
-                            {% if m.id_usuario == n.id_usuario %}
+                            {% if m.id == n.id_usuario %}
                                 <a href="/blog/perfil/{{n.id_usuario}}"> {{ m.first_name }} </a>
                             {% endif %}
                         {% endfor %}
